@@ -11,13 +11,19 @@ class Ui_Dialog(object):
         Dialog.setSizeGripEnabled(True)
 
 
-        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox.setGeometry(QtCore.QRect(670, 610, 281, 32))
-        self.buttonBox.setLayoutDirection(QtCore.Qt.RightToLeft)
-        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok|QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Reset)
-        self.buttonBox.setCenterButtons(False)
-        self.buttonBox.setObjectName("buttonBox")
+        # self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
+        # self.buttonBox.setGeometry(QtCore.QRect(670, 610, 281, 32))
+        # self.buttonBox.setLayoutDirection(QtCore.Qt.RightToLeft)
+        # self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
+        # self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok|QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Reset)
+        # self.buttonBox.setCenterButtons(False)
+        # self.buttonBox.setObjectName("buttonBox")
+        
+        
+        self.okButton = QtWidgets.QPushButton(Dialog)
+        self.okButton.setGeometry(QtCore.QRect(780, 610, 80, 32))
+        self.okButton.setObjectName("okButton")
+        self.okButton.setText("Ok")
         self.dateTimeEdit = QtWidgets.QDateTimeEdit(Dialog)
         self.dateTimeEdit.setGeometry(QtCore.QRect(110, 88, 194, 22))
         self.dateTimeEdit.setObjectName("dateTimeEdit")
@@ -87,14 +93,16 @@ class Ui_Dialog(object):
         # self.FinalResultLabel.setObjectName("FinalResultLabel")
 
         self.retranslateUi(Dialog)
-        self.buttonBox.accepted.connect(Dialog.accept)
-        self.buttonBox.rejected.connect(Dialog.reject)
+        # self.buttonBox.accepted.connect(self.getFinalFollowUp)
+        # self.buttonBox.rejected.connect(Dialog.reject)
+        
         QtCore.QMetaObject.connectSlotsByName(Dialog)
         #self.update()
 
 
         #checked actions
-        self.bugCheck.clicked.connect(self.getFinalFollowUp)
+        self.okButton.clicked.connect(self.getFinalFollowUp)
+        #self.bugCheck.clicked.connect(self.getFinalFollowUp)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -112,14 +120,12 @@ class Ui_Dialog(object):
         self.timer.timeout.connect(self.getFinalFollowUp)
 
     def getFinalFollowUp(self):
-
-        print(self.bugCheck.isChecked())
-        if self.bugCheck.isChecked():
-            print("yes")
-            self.finalResult.setText(self.nameText.toPlainText() + " worked on this lesson today")
-        else:
-            self.finalResult.setText("")
-        # #self.FinalResultLabel.setText("Testing 132")
+      
+        self.finalResult.setText(self.nameText.toPlainText() + " worked on this lesson today. " +
+                                 self.workText.toPlainText() + " " + 
+                                 self.nameText.toPlainText() + " will continue to work on " + "" + "program next time.")
+     
+    
 
 
 if __name__ == "__main__":
@@ -128,6 +134,6 @@ if __name__ == "__main__":
     Dialog = QtWidgets.QDialog()
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
-    ui.getFinalFollowUp()
+    #ui.getFinalFollowUp()
     Dialog.show()
     sys.exit(app.exec_())
