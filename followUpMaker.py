@@ -9,27 +9,51 @@ class Ui_Dialog(object):
         Dialog.setObjectName("Dialog")
         Dialog.resize(970, 656)
         Dialog.setSizeGripEnabled(True)
-
-
-        # self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        # self.buttonBox.setGeometry(QtCore.QRect(670, 610, 281, 32))
-        # self.buttonBox.setLayoutDirection(QtCore.Qt.RightToLeft)
-        # self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        # self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok|QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Reset)
-        # self.buttonBox.setCenterButtons(False)
-        # self.buttonBox.setObjectName("buttonBox")
         
+        # Okay and Cancel button
         
         self.okButton = QtWidgets.QPushButton(Dialog)
+        self.dateTimeEdit = QtWidgets.QDateTimeEdit(Dialog)
+        self.nameText = QtWidgets.QTextEdit(Dialog)
+        self.codeLangLabel = QtWidgets.QLabel(Dialog)
+        self.nameLabel = QtWidgets.QLabel(Dialog)
+        self.dateText = QtWidgets.QLabel(Dialog)
+        self.workLabel = QtWidgets.QLabel(Dialog)
+        self.bugLabel = QtWidgets.QLabel(Dialog)
+        self.finalResult = QtWidgets.QTextEdit(Dialog)
+         
+     
+        
+        
+        
+        # Student attributes
+        self.focusedLabel = QtWidgets.QLabel(Dialog)
+        self.distractedLabel = QtWidgets.QLabel(Dialog)
+        self.independentLabel = QtWidgets.QLabel(Dialog)
+        self.helpfulLabel = QtWidgets.QLabel(Dialog)
+        self.focusedCheck = QtWidgets.QCheckBox(Dialog)
+        self.distractedCheck = QtWidgets.QCheckBox(Dialog)
+        self.independentCheck = QtWidgets.QCheckBox(Dialog)
+        self.helpfulCheck = QtWidgets.QCheckBox(Dialog)
+        
         self.okButton.setGeometry(QtCore.QRect(780, 610, 80, 20))
         self.okButton.setObjectName("okButton")
         self.okButton.setText("Ok")
-        self.dateTimeEdit = QtWidgets.QDateTimeEdit(Dialog)
+        
+      
+        
+        # Checkbox
+        self.focusedCheck.setGeometry(QtCore.QRect(20, 50, 104, 20))
+        self.distractedCheck.setGeometry(QtCore.QRect(110, 30, 104, 20))
+        self.independentCheck.setGeometry(QtCore.QRect(110, 30, 104, 20))
+        self.helpfulCheck.setGeometry(QtCore.QRect(110, 30, 104, 20))
+        
+        
+        # Time edit
         self.dateTimeEdit.setGeometry(QtCore.QRect(110, 88, 194, 20))
         self.dateTimeEdit.setObjectName("dateTimeEdit")
        
         # Text Fields
-        self.nameText = QtWidgets.QTextEdit(Dialog)
         self.nameText.setGeometry(QtCore.QRect(110, 30, 104, 20))
         self.nameText.setObjectName("nameText")
         self.nameText.setTabChangesFocus(True)
@@ -42,13 +66,8 @@ class Ui_Dialog(object):
         self.bugText.setObjectName("bugText")
         self.bugText.setTabChangesFocus(True)
         
-        
-        
-        
-        
-        
+
         # Coding Language Choice
-        self.codeLangLabel = QtWidgets.QLabel(Dialog)
         self.codeLangLabel.setGeometry(QtCore.QRect(230, 30, 71, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -62,7 +81,8 @@ class Ui_Dialog(object):
         self.codeLang.clear()
         self.codeLang.addItems(['Javascript', 'Scratch', 'Unity'])
       
-        self.nameLabel = QtWidgets.QLabel(Dialog)
+      
+        # Labels
         self.nameLabel.setGeometry(QtCore.QRect(20, 30, 71, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -72,10 +92,11 @@ class Ui_Dialog(object):
         self.nameLabel.setMidLineWidth(0)
         self.nameLabel.setTextFormat(QtCore.Qt.AutoText)
         self.nameLabel.setObjectName("nameLabel")
-        self.dateText = QtWidgets.QLabel(Dialog)
+       
         self.dateText.setGeometry(QtCore.QRect(20, 80, 71, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
+        
         self.dateText.setFont(font)
         self.dateText.setFrameShape(QtWidgets.QFrame.Box)
         self.dateText.setFrameShadow(QtWidgets.QFrame.Sunken)
@@ -83,7 +104,7 @@ class Ui_Dialog(object):
         self.dateText.setTextFormat(QtCore.Qt.AutoText)
         self.dateText.setObjectName("dateText")
         
-        self.workLabel = QtWidgets.QLabel(Dialog)
+        
         self.workLabel.setGeometry(QtCore.QRect(20, 140, 71, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -93,7 +114,7 @@ class Ui_Dialog(object):
         self.workLabel.setMidLineWidth(0)
         self.workLabel.setTextFormat(QtCore.Qt.AutoText)
         self.workLabel.setObjectName("workLabel")
-        self.bugLabel = QtWidgets.QLabel(Dialog)
+        
         self.bugLabel.setGeometry(QtCore.QRect(19, 251, 71, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -103,14 +124,14 @@ class Ui_Dialog(object):
         self.bugLabel.setMidLineWidth(0)
         self.bugLabel.setTextFormat(QtCore.Qt.AutoText)
         self.bugLabel.setObjectName("bugLabel")
-        self.bugCheck = QtWidgets.QCheckBox(Dialog)
-        self.bugCheck.setGeometry(QtCore.QRect(330, 84, 81, 20))
-        self.bugCheck.setAcceptDrops(False)
-        self.bugCheck.setTristate(False)
-        self.bugCheck.setObjectName("bugCheck")
+        # self.bugCheck = QtWidgets.QCheckBox(Dialog)
+        # self.bugCheck.setGeometry(QtCore.QRect(330, 84, 81, 20))
+        # self.bugCheck.setAcceptDrops(False)
+        # self.bugCheck.setTristate(False)
+        # self.bugCheck.setObjectName("bugCheck")
         
     
-        self.finalResult = QtWidgets.QTextEdit(Dialog)
+        
         self.finalResult.setGeometry(QtCore.QRect(110, 480, 751, 111))
         # self.finalResult.setObjectName("finalResult")
 
@@ -125,12 +146,12 @@ class Ui_Dialog(object):
         # self.buttonBox.rejected.connect(Dialog.reject)
         
         QtCore.QMetaObject.connectSlotsByName(Dialog)
-        #self.update()
+
 
 
         #checked actions
         self.okButton.clicked.connect(self.getFinalFollowUp)
-        #self.bugCheck.clicked.connect(self.getFinalFollowUp)
+       
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -139,7 +160,7 @@ class Ui_Dialog(object):
         self.dateText.setText(_translate("Dialog", "Date"))
         self.workLabel.setText(_translate("Dialog", "Worked "))
         self.bugLabel.setText(_translate("Dialog", "Bug"))
-        self.bugCheck.setText(_translate("Dialog", "Bugs"))
+        #self.bugCheck.setText(_translate("Dialog", "Bugs"))
         self.codeLangLabel.setText(_translate("Dialog", "Language"))
         #self.FinalResultLabel.setText(_translate("Dialog", "Final Followup"))
 
@@ -155,6 +176,36 @@ class Ui_Dialog(object):
                                  self.nameText.toPlainText() + " will continue to work on " + "" + "program next time.")
      
     
+class Student():
+    
+    def __init__(self, name, pronoun, codeLang):
+        self.name = name 
+        self.pronoun =  pronoun
+        self.codeLang = codeLang
+        self.description()
+        
+        
+    def description(self):
+    
+        self.distracted = False
+        self.helpful = False
+        self.independent = False
+        self.focused = False
+        
+    
+    def getName(self):
+        return self.name
+    
+    def getPronoun(self):
+        return self.pronoun
+    
+    def isFocused(self):
+        return self.focused
+    
+    def getLanguage(self):
+        return self.codeLang
+    
+
 
 
 if __name__ == "__main__":
