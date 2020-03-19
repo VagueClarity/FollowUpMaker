@@ -15,7 +15,7 @@ class Ui_Dialog(object):
         self.okButton = QtWidgets.QPushButton(Dialog)
         self.dateTimeEdit = QtWidgets.QDateTimeEdit(Dialog)
         self.nameText = QtWidgets.QTextEdit(Dialog)
-        self.codeLangLabel = QtWidgets.QLabel(Dialog)
+        self.pronounLabel = QtWidgets.QLabel(Dialog)
         self.nameLabel = QtWidgets.QLabel(Dialog)
         self.dateText = QtWidgets.QLabel(Dialog)
         self.workLabel = QtWidgets.QLabel(Dialog)
@@ -43,14 +43,35 @@ class Ui_Dialog(object):
       
         
         # Checkbox
-        self.focusedCheck.setGeometry(QtCore.QRect(20, 50, 104, 20))
-        self.distractedCheck.setGeometry(QtCore.QRect(110, 30, 104, 20))
-        self.independentCheck.setGeometry(QtCore.QRect(110, 30, 104, 20))
-        self.helpfulCheck.setGeometry(QtCore.QRect(110, 30, 104, 20))
+        self.focusedCheck.setGeometry(QtCore.QRect(20, 55, 104, 20))
+        self.distractedCheck.setGeometry(QtCore.QRect(110, 55, 104, 20))
+        self.independentCheck.setGeometry(QtCore.QRect(200, 55, 104, 20))
+        self.helpfulCheck.setGeometry(QtCore.QRect(300, 55, 104, 20))
+        
+        self.focusedLabel.setGeometry(QtCore.QRect(40, 55, 71, 20))
+        self.focusedLabel.setObjectName("focusedLabel")
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.focusedLabel.setFont(font)
+        
+       
+        self.distractedLabel.setGeometry(QtCore.QRect(130, 55, 71, 20))
+        self.distractedLabel.setObjectName("distractedLabel")
+        self.distractedLabel.setFont(font)
+        
+        self.independentLabel.setGeometry(QtCore.QRect(220, 55, 71, 20))
+        self.independentLabel.setObjectName("independentLabel")
+        self.independentLabel.setFont(font)
+        
+        self.helpfulLabel.setGeometry(QtCore.QRect(320, 55, 71, 20))
+        self.helpfulLabel.setObjectName("independentLabel")
+        self.helpfulLabel.setFont(font)
+        
+        
         
         
         # Time edit
-        self.dateTimeEdit.setGeometry(QtCore.QRect(110, 88, 194, 20))
+        self.dateTimeEdit.setGeometry(QtCore.QRect(110, 90, 194, 20))
         self.dateTimeEdit.setObjectName("dateTimeEdit")
        
         # Text Fields
@@ -68,18 +89,18 @@ class Ui_Dialog(object):
         
 
         # Coding Language Choice
-        self.codeLangLabel.setGeometry(QtCore.QRect(230, 30, 71, 20))
+        self.pronounLabel.setGeometry(QtCore.QRect(230, 30, 71, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.codeLangLabel.setFont(font)
-        self.codeLangLabel.setFrameShape(QtWidgets.QFrame.Box)
-        self.codeLangLabel.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.codeLangLabel.setMidLineWidth(0)
-        self.codeLangLabel.setTextFormat(QtCore.Qt.AutoText)
-        self.codeLang = QtWidgets.QComboBox(Dialog)
-        self.codeLang.setGeometry(QtCore.QRect(320, 30, 80, 20))
-        self.codeLang.clear()
-        self.codeLang.addItems(['Javascript', 'Scratch', 'Unity'])
+        self.pronounLabel.setFont(font)
+        self.pronounLabel.setFrameShape(QtWidgets.QFrame.Box)
+        self.pronounLabel.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.pronounLabel.setMidLineWidth(0)
+        self.pronounLabel.setTextFormat(QtCore.Qt.AutoText)
+        self.pronoun = QtWidgets.QComboBox(Dialog)
+        self.pronoun.setGeometry(QtCore.QRect(320, 30, 80, 20))
+        self.pronoun.clear()
+        self.pronoun.addItems(['Javascript', 'Scratch', 'Unity'])
       
       
         # Labels
@@ -93,10 +114,9 @@ class Ui_Dialog(object):
         self.nameLabel.setTextFormat(QtCore.Qt.AutoText)
         self.nameLabel.setObjectName("nameLabel")
        
-        self.dateText.setGeometry(QtCore.QRect(20, 80, 71, 20))
+        self.dateText.setGeometry(QtCore.QRect(20, 90, 71, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
-        
         self.dateText.setFont(font)
         self.dateText.setFrameShape(QtWidgets.QFrame.Box)
         self.dateText.setFrameShadow(QtWidgets.QFrame.Sunken)
@@ -105,6 +125,8 @@ class Ui_Dialog(object):
         self.dateText.setObjectName("dateText")
         
         
+       
+    
         self.workLabel.setGeometry(QtCore.QRect(20, 140, 71, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -151,6 +173,7 @@ class Ui_Dialog(object):
 
         #checked actions
         self.okButton.clicked.connect(self.getFinalFollowUp)
+        self.focusedCheck.clicked.connect(self.getFinalFollowUp)
        
 
     def retranslateUi(self, Dialog):
@@ -161,7 +184,11 @@ class Ui_Dialog(object):
         self.workLabel.setText(_translate("Dialog", "Worked "))
         self.bugLabel.setText(_translate("Dialog", "Bug"))
         #self.bugCheck.setText(_translate("Dialog", "Bugs"))
-        self.codeLangLabel.setText(_translate("Dialog", "Language"))
+        self.pronounLabel.setText(_translate("Dialog", "Pronoun"))
+        self.focusedLabel.setText(_translate("Dialog", "Focused"))
+        self.distractedLabel.setText(_translate("Dialog", "Distracted"))
+        self.independentLabel.setText(_translate("Dialog", "Independent"))
+        self.helpfulLabel.setText(_translate("Dialog", "Helfpul"))
         #self.FinalResultLabel.setText(_translate("Dialog", "Final Followup"))
 
 
@@ -169,11 +196,19 @@ class Ui_Dialog(object):
         self.timer = QTimer()
         self.timer.timeout.connect(self.getFinalFollowUp)
 
+
+
+
     def getFinalFollowUp(self):
-      
-        self.finalResult.setText(self.nameText.toPlainText() + " worked on this lesson today. " +
-                                 self.workText.toPlainText() + " " + 
-                                 self.nameText.toPlainText() + " will continue to work on " + "" + "program next time.")
+    
+        name = self.nameText.toPlainText()
+        pronoun = self.pronoun.currentText()
+        
+        
+        
+        self.finalResult.setText(name + pronoun +  " worked on this lesson today. " +
+                                 name + " " + 
+                                 name + " will continue to work on " + "" + "program next time.")
      
     
 class Student():
@@ -203,7 +238,7 @@ class Student():
         return self.focused
     
     def getLanguage(self):
-        return self.codeLang
+        return self.pronoun
     
 
 
