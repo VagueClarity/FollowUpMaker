@@ -21,7 +21,7 @@ class Ui_Dialog(object):
         self.workLabel = QtWidgets.QLabel(Dialog)
         self.bugLabel = QtWidgets.QLabel(Dialog)
         self.finalResult = QtWidgets.QTextEdit(Dialog)
-         
+        self.codeLangLabel = QtWidgets.QLabel(Dialog)
      
         
         
@@ -88,7 +88,7 @@ class Ui_Dialog(object):
         self.bugText.setTabChangesFocus(True)
         
 
-        # Coding Language Choice
+        # Gender Choice
         self.pronounLabel.setGeometry(QtCore.QRect(230, 30, 71, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -100,8 +100,19 @@ class Ui_Dialog(object):
         self.pronoun = QtWidgets.QComboBox(Dialog)
         self.pronoun.setGeometry(QtCore.QRect(320, 30, 80, 20))
         self.pronoun.clear()
-        self.pronoun.addItems(['Javascript', 'Scratch', 'Unity'])
+        self.pronoun.addItems(['He', 'She', 'They'])
       
+        # Pronoun Choice
+        self.codeLangLabel.setGeometry(QtCore.QRect(415, 30, 71, 20))
+        self.codeLangLabel.setFont(font)
+        self.codeLangLabel.setFrameShape(QtWidgets.QFrame.Box)
+        self.codeLangLabel.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.codeLangLabel.setMidLineWidth(0)
+        self.codeLangLabel.setTextFormat(QtCore.Qt.AutoText)
+        self.codeLang = QtWidgets.QComboBox(Dialog)
+        self.codeLang.setGeometry(QtCore.QRect(500, 30, 80, 20))
+        self.codeLang.clear()
+        self.codeLang.addItems(['Javascript', 'Scratch', 'Unity'])
       
         # Labels
         self.nameLabel.setGeometry(QtCore.QRect(20, 30, 71, 20))
@@ -189,6 +200,7 @@ class Ui_Dialog(object):
         self.distractedLabel.setText(_translate("Dialog", "Distracted"))
         self.independentLabel.setText(_translate("Dialog", "Independent"))
         self.helpfulLabel.setText(_translate("Dialog", "Helfpul"))
+        self.codeLangLabel.setText(_translate("Dialog","Language"))
         #self.FinalResultLabel.setText(_translate("Dialog", "Final Followup"))
 
 
@@ -203,19 +215,22 @@ class Ui_Dialog(object):
     
         name = self.nameText.toPlainText()
         pronoun = self.pronoun.currentText()
+        codeLang = self.codeLang.currentText()
+        s = Student(name, pronoun, codeLang)
+        m = Message(s)
         
-        
-        
-        self.finalResult.setText(name + pronoun +  " worked on this lesson today. " +
-                                 name + " " + 
-                                 name + " will continue to work on " + "" + "program next time.")
-     
+        self.finalResult.setText(m.getIntroMessage() + m.getOutroMessage())
     
 class Student():
     
     def __init__(self, name, pronoun, codeLang):
-        self.name = name 
-        self.pronoun =  pronoun
+        self.name = name
+        if pronoun == 'he' or pronoun == 'He':
+            self.pronoun =  [pronoun, 'his']
+        elif pronoun == 'she' or pronoun == 'She':
+            self.pronoun = [pronoun, 'her']
+        elif pronoun == 'they' or pronoun == 'They':
+            self.pronoun = [pronoun, 'their']
         self.codeLang = codeLang
         self.description()
         
@@ -238,7 +253,7 @@ class Student():
         return self.focused
     
     def getLanguage(self):
-        return self.pronoun
+        return self.codeLang
     
 
 
