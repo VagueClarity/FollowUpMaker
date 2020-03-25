@@ -3,13 +3,14 @@ import random
 
 class Message():
     
-    def __init__(self, student):
+    def __init__(self, student, workedOn):
         
         self.student = student 
         self.name = self.student.getName()
         self.pronoun = self.student.getPronoun()
         print(type(self.pronoun))
         self.language = self.student.getLanguage()
+        self.workedOn = workedOn
        
     def getIntroMessage(self, customMesg = None):
         
@@ -33,20 +34,24 @@ class Message():
                                self.pronoun[0] + " got a lot of work done and made a good progress. ",
                                ]
                             
+        index = random.randint(0, len(self.focusedMessage) - 1)
         
+        return self.focusedMessage[index]
         
         
         
     def getOutroMessage(self, customMesg = None):
         
-        self.outroMessage = ["Next time " + self.pronoun[0] +" will worked on " + self.pronoun[1] +" coding project next time. ",
-                             "Next time " + self.pronoun[0] +" will continue to make some progress on " + self.pronoun[1] +" javascript program. ",
-                             "Next time " + self.pronoun[0] +" can continue to work on this project. ",
-                             "Next time, " + self.pronoun[0] +" can continue to work on " + self.pronoun[1] +" lesson." ]
+        self.outroMessage = [" Next time " + self.pronoun[0] +" will worked on " + self.pronoun[1] +" coding project next time. ",
+                             " Next time " + self.pronoun[0] +" will continue to make some progress on " + self.pronoun[1] +" javascript program. ",
+                             " Next time " + self.pronoun[0] +" can continue to work on this project. ",
+                             " Next time, " + self.pronoun[0] +" can continue to work on " + self.pronoun[1] +" lesson." ]
+        
+        self.work = self.pronoun[0] + " " + self.workedOn
         
         index = random.randint(0,len(self.introMessage)-1)
         
-        return self.outroMessage[index]
+        return self.work + self.outroMessage[index]
           
     
         

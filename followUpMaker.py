@@ -184,7 +184,7 @@ class Ui_Dialog(object):
 
         #checked actions
         self.okButton.clicked.connect(self.getFinalFollowUp)
-        self.focusedCheck.clicked.connect(self.getFinalFollowUp)
+        #self.focusedCheck.clicked.connect(self.getFinalFollowUp)
        
 
     def retranslateUi(self, Dialog):
@@ -216,10 +216,16 @@ class Ui_Dialog(object):
         name = self.nameText.toPlainText()
         pronoun = self.pronoun.currentText()
         codeLang = self.codeLang.currentText()
-        s = Student(name, pronoun, codeLang)
-        m = Message(s)
         
-        self.finalResult.setText(m.getIntroMessage() + m.getOutroMessage())
+        stuff = self.workText.toPlainText()
+        s = Student(name, pronoun, codeLang)
+        m = Message(s, stuff)
+        
+       
+        if self.focusedCheck.isChecked():
+            self.finalResult.setText(m.getIntroMessage() + m.isFocusedMessage() +  m.getOutroMessage())
+        else:
+            self.finalResult.setText(m.getIntroMessage() +  m.getOutroMessage())
     
 class Student():
     
